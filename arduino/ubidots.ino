@@ -1,5 +1,5 @@
 /****************************************
-   Include Libraries
+   Librerías
  ****************************************/
 #include "UbidotsEsp32Mqtt.h"
 
@@ -37,7 +37,7 @@ void callback(char *topic, byte *payload, unsigned int length)
 }
 
 /****************************************
-   Main Functions
+   Funciones principales
  ****************************************/
 
 void setup()
