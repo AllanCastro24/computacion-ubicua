@@ -9,11 +9,14 @@ Especificaciones:
 
 Requerimientos para Python:
 
-* pip install ubidots==1.6.6
+* pip install ubidots==1.6.6    #conexión IoT
+* pip install flask             #Web server (Backend)
+* pip install pymysql           #Conexión con base de datos
 
 Requerimientos para mysql:
 
 * base de datos "IoT"
+* Ejecutar el script proporcionado en el repositorio
 
 Requerimientos para arduino:
 
@@ -22,3 +25,5 @@ Requerimientos para arduino:
 ## Resources
 
 * https://github.com/ubidots/ubidots-python
+* http://copitosystem.com/es/python-mysql-database/
+* https://github.com/FaztWeb/flask-crud-contacts-app
