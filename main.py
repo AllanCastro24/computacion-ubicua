@@ -1,8 +1,26 @@
 from ubidots import ApiClient
+from flask import Flask, render_template
+import pymysql
 
-api = ApiClient(token='BBFF-uiHDZ3oCZ7DAUMcuvpiFawSga4keUW')
-my_variable = api.get_variable('62672f2dc2c55c000c247107')
-print("encendiendo el foco...")
+#Objeto Flask
+app=Flask(__name__)
+#Conexión con la BD
+db = pymysql.connect("localhost","root","","IoT")
+cursor = db.cursor() #Objeto de basde de datos
 
+#Empieza el programa
+@app.route('/') #No se indica carpeta, por default es templates
+def index():
+    return render_template('index.html')
 
-new_value = my_variable.save_value({'value': 1})
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
+
+#Clase main
+if __name__ == '__main__':
+    app.run()
