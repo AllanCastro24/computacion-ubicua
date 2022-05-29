@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
 --
--- Host: localhost    Database: IoT
+-- Host: localhost    Database: iot
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.21-MariaDB
 
@@ -27,6 +27,7 @@ CREATE TABLE `dispositivos` (
   `api_label` varchar(100) DEFAULT NULL,
   `id_ubidots` varchar(100) DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
+  `usuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_device`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -94,7 +95,7 @@ LOCK TABLES `variables` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'IoT'
+-- Dumping routines for database 'iot'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -106,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-29 15:00:50
+-- Dump completed on 2022-05-29 15:09:16
