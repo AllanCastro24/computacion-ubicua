@@ -1,14 +1,38 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mysqldb import MySQL
 from ubidots import ApiClient
+import sqlite3
 
-api = ApiClient(token='BBFF-64938518cc32029778d00492468aec11406')
-
+conexion = sqlite3.connect('iot.db', check_same_thread=False)
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-   return render_template('dashboard.html') 
+   error = ""
+   if request.method == 'POST':
+      if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+         error = "Datos incorrectos. Intente de nuevo"
+      else:
+         return render_template('dashboard.html')
+
+   return render_template('login.html',error=error) 
+
+@app.route('/registro', methods=['GET','POST'])
+def registro():
+   error = ""
+   if request.method == 'POST':
+      if request.form['username'] != '' or request.form['password'] != '' or request.form['confirmar_pass'] != '' or request.form['mail'] != '' or request.form['api_key'] != '' or request.form['token'] != '' or request.form['ubidots_app'] != '' or request.form['telefono'] != '':
+         if request.form['password'] != request.form['confirmar_pass']:
+            error = "Las contraseñas no coinciden"
+         else:
+            cursor = conexion.cursor()
+            cursor.execute("INSERT INTO usuarios (id_user,user, pass, mail, api_key, token, ubidots_app, num_telefono) VALUES(null,?, ?, ?, ?, ?, ?, ?)",(request.form['username'],request.form['password'],request.form['mail'],request.form['api_key'],request.form['token'],request.form['ubidots_app'],request.form['telefono']))
+            conexion.commit()
+            api = ApiClient(request.form['api_key'])
+            return render_template('dashboard.html') 
+      else:
+         error = "Aun faltan datos por capturar"
+
+   return render_template('registro.html',error=error) 
 
 @app.route('/home')
 def home():

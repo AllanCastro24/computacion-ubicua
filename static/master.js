@@ -9,13 +9,13 @@
         type: 'line',
         data: {
             labels: [
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
+                'Domingo',
+                'Lunes',
+                'Martes',
+                'Miercoles',
+                'Jueves',
+                'Viernes',
+                'Sabado'
             ],
             datasets: [{
                 data: [
